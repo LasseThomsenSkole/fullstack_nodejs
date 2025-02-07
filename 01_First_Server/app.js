@@ -13,4 +13,8 @@ app.get("/yourfavoritenumber/:favoriteNumber", (req, res) =>{
     res.send({data: number})
 })
 
+app.get("/favoritethings/:animal/:flower", (req,res) =>{
+    res.send({data:`${req.params.flower} & ${req.params.animal}`});
+})
+
 app.listen(80);
