@@ -40,6 +40,9 @@ app.post("/fingerbones", (req, res) =>{
 })
 app.delete("/fingerbones/:id", (req,res)=>{
     const fingerboneToBeDeleted = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
+    if (!fingerboneToBeDeleted){
+        res.status(404).send("fingerbone not found")
+    }
     fingerBones = fingerBones.filter(fingerbone=> fingerbone.id === fingerboneToBeDeleted.id)
     res.send({data: fingerBones});
 })
