@@ -29,6 +29,7 @@ app.get("/fingerbones/:id", (req, res) =>{
     }
     res.send({data: foundFingerbone})
 })
+
 app.post("/fingerbones", (req, res) =>{
     const maxId = fingerBones.reduce((max, bone) => Math.max(max, bone.id), 0);
     const newFingerbone = {
@@ -38,6 +39,7 @@ app.post("/fingerbones", (req, res) =>{
     fingerBones.push(newFingerbone);
     res.send({data: newFingerbone})
 })
+
 app.delete("/fingerbones/:id", (req,res)=>{
     const fingerboneToBeDeleted = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
     if (!fingerboneToBeDeleted){
