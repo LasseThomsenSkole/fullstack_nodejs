@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json())
 
-const fingerBones = [
+let fingerBones = [
     {
         id: 1,
         name: "Phalange Knowles"
@@ -37,6 +37,11 @@ app.post("/fingerbones", (req, res) =>{
     }
     fingerBones.push(newFingerbone);
     res.send({data: newFingerbone})
+})
+app.delete("/fingerbones/:id", (req,res)=>{
+    const fingerboneToBeDeleted = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
+    fingerBones = fingerBones.filter(fingerbone=> fingerbone.id === fingerboneToBeDeleted.id)
+    res.send({data: fingerBones});
 })
 
 const PORT = 80
