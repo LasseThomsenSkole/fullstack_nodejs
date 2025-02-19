@@ -43,7 +43,7 @@ app.delete("/fingerbones/:id", (req,res)=>{
     if (!fingerboneToBeDeleted){
         res.status(404).send("fingerbone not found")
     }
-    fingerBones = fingerBones.filter(fingerbone=> fingerbone.id === fingerboneToBeDeleted.id)
+    fingerBones = fingerBones.filter(fingerbone=> fingerbone.id !== fingerboneToBeDeleted.id)
     res.send({data: fingerBones});
 })
 
