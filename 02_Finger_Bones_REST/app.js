@@ -2,6 +2,8 @@ const express = require("express")
 
 const app = express();
 
+app.use(express.json())
+
 const fingerBones = [
     {
         id: 1,
@@ -26,6 +28,15 @@ app.get("/fingerbones/:id", (req, res) =>{
         res.status(404).send({error: "not found"})
     }
     res.send({data: foundFingerbone})
+})
+app.post("/fingerbones", (req, res) =>{
+    const maxId = fingerBones.reduce((max, bone) => Math.max(max, bone.id), 0);
+    const newFingerbone = {
+        id: maxId + 1,
+        name: req.body.name
+    }
+    fingerBones.push(newFingerbone);
+    res.send({data: newFingerbone})
 })
 
 const PORT = 80
