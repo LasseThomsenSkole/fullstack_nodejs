@@ -40,6 +40,15 @@ app.post("/fingerbones", (req, res) =>{
     res.send({data: newFingerbone})
 })
 
+app.put("/fingerbones/:id", (req, res)=>{
+    const fingerboneToBeUpdated = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
+    if (!fingerboneToBeUpdated){
+        res.status(404).send("fingerbone not found")
+    }
+    fingerboneToBeUpdated.name = req.body.name
+    res.send({data: fingerboneToBeUpdated})
+})
+
 app.delete("/fingerbones/:id", (req,res)=>{
     const fingerboneToBeDeleted = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
     if (!fingerboneToBeDeleted){
