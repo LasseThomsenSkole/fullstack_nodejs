@@ -36,7 +36,7 @@ app.post("/fingerbones", (req, res) =>{
         id: maxId + 1,
         name: req.body.name
     }
-    fingerBones.push(newFingerbone);
+    fingerBones.push(newFingerbone)
     res.send({data: newFingerbone})
 })
 
@@ -59,4 +59,6 @@ app.delete("/fingerbones/:id", (req,res)=>{
 })
 
 const PORT = 80
-app.listen(PORT)
+app.listen(PORT, ()=>{
+    console.log(`port: ${PORT}`);
+})
