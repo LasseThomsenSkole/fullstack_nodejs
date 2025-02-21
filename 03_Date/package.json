@@ -1,0 +1,9 @@
+{
+  "name": "03_date",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "private": true
+}
