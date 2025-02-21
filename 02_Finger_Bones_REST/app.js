@@ -50,12 +50,14 @@ app.put("/fingerbones/:id", (req, res)=>{
 })
 
 app.delete("/fingerbones/:id", (req,res)=>{
+    //her skulle der bruges findIndex da hvis man kun skal finde et object stopper den. Den returnere index
     const fingerboneToBeDeleted = fingerBones.find(fingerbone => fingerbone.id === Number(req.params.id))
     if (!fingerboneToBeDeleted){
         res.status(404).send("fingerbone not found")
     }
+    //her skulle der bruges .splice
     fingerBones = fingerBones.filter(fingerbone=> fingerbone.id !== fingerboneToBeDeleted.id)
-    res.send({data: fingerBones});
+    res.send({data: fingerBones})
 })
 
 const PORT = 80
