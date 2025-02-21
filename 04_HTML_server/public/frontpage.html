@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>forside</title>
     <style>
-        #frontpage{
+        #frontpage {
             color: red;
             background: grey;
+        }
+
+        .visitor-div {
+            flex: auto;
         }
     </style>
 </head>
@@ -14,8 +18,15 @@
 <h1 id="frontpage">
     bombo
 </h1>
-<script>
+<div class="visitor-div">
+    <p>you are visitor: </p>
+    <p id="visitor-count"></p>
 
+</div>
+<script>
+    fetch("http://localhost:80/visitorcounts")
+        .then((res) => res.json())
+        .then((result) => document.getElementById("visitor-count").textContent = result.data)
 </script>
 </body>
 </html>
