@@ -1,8 +1,6 @@
 const express = require("express")
 const app = express()
 
-app.use(express.json())
-
 console.log(new Date()) // UTC
 console.log(Date()) // local time zone / OS time zone
 const months = [
