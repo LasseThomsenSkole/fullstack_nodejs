@@ -1,17 +1,20 @@
-const express = require("express")
-
+//const express = require("express")
+import express from 'express';
+import path from 'path';
+import partiesLibraryES from './util/partiesLibraryES.js';
 //const partiesLibrary = require("./util/partiesLibrary.js")
 //console.log(partiesLibrary)
 
 //const {parties, valueObj} = require("./util/partiesLibrary.js")
 
 //console.log(parties)
-
 const app = express()
+app.use(express.static("public"))
+
 let visitorCount= 0;
 
 app.get("/", (req, res) =>{
-    res.sendFile(__dirname + "/public/frontpage/frontpage.html")
+    res.sendFile(path.resolve("public/frontpage/frontpage.html"))
 })
 
 app.get("/visitorcounts", (req, res)=>{
@@ -20,7 +23,7 @@ app.get("/visitorcounts", (req, res)=>{
 })
 
 app.get("/partypage", (req, res)=>{
-    res.sendFile(__dirname + "/public/partypage/partypage.html")
+    res.sendFile(path.resolve("public/partypage/partypage.html"))
 })
 
 const PORT = 80

@@ -1,0 +1,8 @@
+#frontpage {
+    color: red;
+    background: grey;
+}
+
+.visitor-div {
+    flex: auto;
+}
