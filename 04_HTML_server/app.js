@@ -1,5 +1,12 @@
 const express = require("express")
 
+//const partiesLibrary = require("./util/partiesLibrary.js")
+//console.log(partiesLibrary)
+
+const {parties, valueObj} = require("./util/partiesLibrary.js")
+
+console.log(parties)
+
 const app = express()
 let visitorCount= 0;
 
