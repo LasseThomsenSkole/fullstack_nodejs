@@ -17,7 +17,7 @@ const months = [
     "november",
     "december"
 ]
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 app.get("/months/v1",(req, res)=>{
     res.send({data: months[new Date().getUTCMonth()]})
