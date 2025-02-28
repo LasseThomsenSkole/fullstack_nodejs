@@ -25,6 +25,9 @@ app.get("/favoritethings/:animal/:flower", (req,res) =>{
 app.get("/welcomepage", (req, res)=>{
     res.sendFile(__dirname +'/index.html')
 })
+app.get("/redirecttofavoritethings" , (req, res)=>{
+    res.redirect('favoritethings/monkey/rose');
+})
 
 app.post("/favoritepolitiker", (req, res)=>{
     console.log(req.body)
