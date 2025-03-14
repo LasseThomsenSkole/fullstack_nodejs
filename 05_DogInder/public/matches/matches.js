@@ -1,6 +1,9 @@
 let dogs = [];
 
 const dogMatchesNameH1 = document.getElementById("dog-matches-name");
+const dogMatchesBio = document.getElementById("dog-matches-bio");
+const dogMatchesCity = document.getElementById("dog-matches-city");
+const dogMatchesStreetAddress = document.getElementById("dog-matches-street-address");
 const dogMatchesImageContainerDiv = document.getElementById("dog-matches-image-container");
 
 function getMatches() {
@@ -9,6 +12,7 @@ function getMatches() {
         .then((result) => {
             dogs = result.data;
             createMatchImage(dogs.pop());
+            populateDogInfo(dogs);
         });
 }
 
@@ -24,7 +28,13 @@ function createMatchImage(dog) {
     dogMatchesImageContainerDiv.innerHTML = "";
     dogMatchesImageContainerDiv.appendChild(imageTag);
 }
-
+function populateDogInfo(dogs){
+    const dog = dogs[0]
+    dogMatchesNameH1.textContent = dog.name;
+    dogMatchesBio.textContent = dog.bio;
+    dogMatchesCity.textContent = dog.city;
+    dogMatchesStreetAddress.textContent = dog.streetAddress;
+}
 function setupHammerPanEvents(dogImageTag) {
     const hammertime = new Hammer(dogImageTag);
 
@@ -51,3 +61,5 @@ function setupHammerPanEvents(dogImageTag) {
         }
     });
 }
+
+setupHammerPanEvents(dogMatchesImageContainerDiv)
