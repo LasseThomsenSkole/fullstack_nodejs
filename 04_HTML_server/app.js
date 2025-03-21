@@ -26,5 +26,9 @@ app.get("/partypage", (req, res)=>{
     res.sendFile(path.resolve("public/partypage/partypage.html"))
 })
 
+app.get("/danger", (req, res) =>{
+    res.sendFile()
+})
+
 const PORT = 80
 app.listen(PORT)
