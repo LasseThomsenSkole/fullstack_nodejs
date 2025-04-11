@@ -7,7 +7,8 @@ import pillsRouter from './routers/pillsRouter.js'
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: true,
+    credentials: true,
 }))
 /* kunne også gøre sådan her
 app.use((req, res, next) => {
