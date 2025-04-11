@@ -19,6 +19,18 @@ app.use(session({
 app.use(employeesRouter);
 app.use(pillsRouter);
 
+import livereload from 'livereload';
+import connectLivereload from 'connect-livereload';
+
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch('../client/dist');
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 500);
+});
+
+app.use(connectLivereload());
 app.get('/{*splat}', (req,res)=>{
     res.sendFile(path.resolve('../client/dist/index.html'));
 })
