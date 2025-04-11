@@ -1,10 +1,11 @@
+import "dotenv/config.js"
 import express from 'express';
 import cors from 'cors';
 import session from "express-session";
-import dotenv from 'dotenv/config';
 import employeesRouter from "./routers/employeesRouter.js";
 import pillsRouter from './routers/pillsRouter.js'
 const app = express();
+app.use(express.json());
 app.use(cors({
     origin: "http://localhost:5173",
 }))
