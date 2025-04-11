@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-
+import session from "express-session";
+import dotenv from 'dotenv/config';
 import employeesRouter from "./routers/employeesRouter.js";
 import pillsRouter from './routers/pillsRouter.js'
 const app = express();
@@ -14,6 +15,12 @@ app.use((req, res, next) => {
     next();
 });
  */
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false},
+}))
 
 app.use(employeesRouter);
 app.use(pillsRouter);
