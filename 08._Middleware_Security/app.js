@@ -16,10 +16,11 @@ app.use(helmet());
 
 
 import session from 'express-session';
+import dotenv from 'dotenv/config';
 
 app.use(session({
     // todo this should never be pushed
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
