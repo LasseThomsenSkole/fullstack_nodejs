@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup-database": "node ./database/setupDatabase.js",
-    "reset-database": "node ./database/setupDatabase.js delete"
+    "setup-database": "node ./database/setup.js",
+    "reset-database": "node ./database/setup.js delete"
   },
   "keywords": [],
   "author": "",
