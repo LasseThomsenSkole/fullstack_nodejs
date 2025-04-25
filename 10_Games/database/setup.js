@@ -1,5 +1,7 @@
 import db from "./connection.js";
-const deleteMode = true
+
+const deleteMode = process.argv.includes("--delete");
+
 if (deleteMode) {
     db.run("DROP TABLE IF EXISTS games");
     db.run("DROP TABLE IF EXISTS runtime_environments");
