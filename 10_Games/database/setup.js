@@ -7,11 +7,11 @@ import db from "./connection.js";
 const deleteMode = process.argv.includes("--delete");
 
 if (deleteMode) {
-    db.run("DROP TABLE IF EXISTS games");
-    db.run("DROP TABLE IF EXISTS runtime_environments");
+    await db.run("DROP TABLE IF EXISTS games");
+    await db.run("DROP TABLE IF EXISTS runtime_environments");
 }
 
-db.exec(`
+await db.exec(`
 CREATE TABLE IF NOT EXISTS games (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
@@ -21,10 +21,25 @@ CREATE TABLE IF NOT EXISTS games (
 );
 `)
 
-db.exec(`
+await db.exec(`
 CREATE TABLE IF NOT EXISTS runtime_environments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     platform TEXT NOT NULL,
     version TEXT NOT NULL
 );
 `)
+if (deleteMode){
+    await db.run(`
+        INSERT INTO runtime_environments (platform, version) VALUES ("epicgames", "1.0");
+    `)
+    await db.run(`
+        INSERT INTO runtime_environments (platform, version) VALUES ("steam", "1.0");
+    `)
+    await db.run(`
+        INSERT INTO games (title, genre, runtime_environment_id) values ("Fallout 4", "RPG", 2);
+    `)
+    await db.run(`
+        INSERT INTO games (title, genre, runtime_environment_id)
+        values ("Skyrim", "MMO", 1);
+    `)
+}
