@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup-database": "node ./database/setup.js",
-    "reset-database": "node ./database/setup.js --delete"
+    "reset-database": "node ./database/setup.js --delete",
+    "dev": "nodemon ./rest/app.js"
   },
   "keywords": [],
   "author": "",
