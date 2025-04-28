@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import db from '../../database/connection.js';
 const router = Router();
-
+//https://svelte.dev/playground/c81d8f3dff584065a82b2d3ea7cd4aee?version=5.28.2
 router.get('/api/games', async (req, res) => {
     const result = await db.all('SELECT * FROM games');
     console.log(result);
