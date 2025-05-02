@@ -11,7 +11,7 @@
 
 // pending, fulfilled
 // resolved / rejected
-
+/*
 new Promise((resolve, reject) => {
     setTimeout(() => {
         // resolve("Everything went well");
@@ -20,3 +20,41 @@ new Promise((resolve, reject) => {
 })
     .then((result) => console.log(result))
     .catch((error) => console.log(error));
+*/
+import * as http from "node:http";
+
+function myPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try{
+                resolve("something good")
+            }catch(e){
+                reject(e);
+            }
+        }, 3000)
+    })
+}
+myPromise()
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error));
+
+
+
+function myFetch(url, method = 'GET', headers = {}) {
+    return new Promise((resolve, reject) => {
+        try{
+            switch (method) {
+                case 'GET':
+                    const res = http.get(url, {'headers': headers});
+                    resolve(res);
+                    break;
+            }
+        }   catch(e){
+            reject(e);
+        }
+    })
+}
+myFetch("http://google.com",'GET', {})
+    .then((result) => result.json())
+    .then((result) => {console.log(result)})
+.catch((error) => console.log(error));
