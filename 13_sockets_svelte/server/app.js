@@ -16,25 +16,32 @@ app.use(cors({
     credentials: true,
 }))
 
-app.use(session({
+const sessionMiddleware = session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
-}))
+})
+app.use(sessionMiddleware);
+
 app.use('/api',nicknamesRouter);
 
 const server = http.createServer(app);
 const io = new Server(server,{
     cors: {
-        origin: '*',
+        origin: 'http://localhost:5173',
+        credentials: true,
     }
 });
+
+io.engine.use(sessionMiddleware)
 
 io.on('connection', (socket) => {
     console.log(`Client connected: ${socket.id}`);
 
     socket.on('client-sends-color', (data) => {
+        console.log(socket.request.session.nickname);
+        data.nickname = socket.request.session.nickname;
         console.log(data);
         //socket.emit('server-sends-color', data); virker ik
         //socket.broadcast.emit('server-sends-color', data); broadcaster til alle andre men ik sig selv

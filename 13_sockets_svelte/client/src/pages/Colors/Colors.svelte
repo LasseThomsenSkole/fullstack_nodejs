@@ -8,7 +8,9 @@
     let socket;
 
     onMount(()=>{
-        socket = io("http://localhost:80");
+        socket = io("http://localhost:80",{
+            withCredentials: true
+        });
         socket.on('server-sends-color', (data)=>{
             document.body.style.backgroundColor = data.color // gør normal ikke det her (DOM manipulation)
             const nickname = 'lasse'
