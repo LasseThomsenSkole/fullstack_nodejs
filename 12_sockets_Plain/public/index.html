@@ -5,19 +5,26 @@
     <title>Colors</title>
 </head>
 <body>
-  <h1>color</h1>
+<h1>color</h1>
 
-  <form onsubmit="submitColor()">
-    <input id="color-picker" type="color">
-    <button>Change Color</button>
-  </form>
 
-  <script>
+<input id="color-picker" type="color">
+<button onclick="submitColor()">Change Color</button>
+<script src="/socket.io/socket.io.js"></script>
+<script>
     const colorPicker = document.getElementById('color-picker');
+
+    const socket = io(); //behøver ik at definer fordi origin er hvor filen er servet fra
+
     function submitColor() {
-      const color = colorPicker.value
-      console.log(color)
+        const color = colorPicker.value
+        socket.emit('client-sends-color', {color});
+        console.log(color);
     }
-  </script>
+
+    socket.on('server-sends-color', (data) => {
+        document.body.style.backgroundColor = data.color;
+    })
+</script>
 </body>
 </html>
