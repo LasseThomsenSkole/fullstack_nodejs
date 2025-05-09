@@ -17,7 +17,9 @@ io.on('connection', (socket) => {
 
     socket.on('client-sends-color', (data) => {
         //console.log(data);
-        socket.emit('server-sends-color', data);
+        //socket.emit('server-sends-color', data); virker ik
+        //socket.broadcast.emit('server-sends-color', data); broadcaster til alle andre men ik sig selv
+        io.emit('server-sends-color', data);
     })
 
     socket.on('disconnect', () => {
