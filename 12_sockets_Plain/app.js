@@ -14,4 +14,7 @@ const port = process.env.PORT || 80;
 server.listen(port, ()=> console.log(`Listening on ${port}`));
 io.on('connection', (socket) => {
     console.log(`Client connected: ${socket.id}`);
+    socket.on('disconnect', () => {
+        console.log(`Client disconnected: ${socket.id}`);
+    })
 })
