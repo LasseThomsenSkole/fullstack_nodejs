@@ -11,7 +11,6 @@ const io = new Server(server);
 
 const port = process.env.PORT || 80;
 
-server.listen(port, ()=> console.log(`Listening on ${port}`));
 io.on('connection', (socket) => {
     console.log(`Client connected: ${socket.id}`);
 
@@ -26,3 +25,4 @@ io.on('connection', (socket) => {
         console.log(`Client disconnected: ${socket.id}`);
     })
 })
+server.listen(port, ()=> console.log(`Listening on ${port}`));
